@@ -1,0 +1,39 @@
+#board {
+    padding: 3em;
+}
+
+h1 {
+    text-align: center;
+}
+
+.row {
+    clear: both;
+    margin: 4em auto;
+    width: 302px; 
+}
+
+.column {
+    float: left;
+    width: 100px;
+    height: 100px;
+}
+
+.top {
+    border-bottom: 1px black solid;
+}
+
+.center {
+    border-bottom: 1px black solid;
+}
+
+.left {
+    border-right: 1px black solid;
+}
+
+.right {
+    border-left: 1px black solid;
+}
+
+.row, .column:hover {
+    cursor: pointer;
+}
