@@ -1,21 +1,37 @@
 let squares = document.querySelectorAll(".column");
 
-squares.forEach(function(square) {
+squares.forEach(function (square) {
   square.addEventListener("click", squareClicked);
 });
 
-let currentPlay = "O";
+let currentPlay = "X";
 
+//Click function
 function squareClicked(e) {
-    if (e.target.textContent !== "") {
-        return;
-    } if (currentPlay === "X") {
+
+  if (e.target.innerHTML !== "") {
+    return;
+  };
+
+  e.target.classList.add(currentPlay);
+  e.target.innerHTML = `<span class="X-or-O">${currentPlay}</span>`
+
+
+  if (isThereWin()) {
+    console.log("You Won!")
+    alert(currentPlay + " Won!");
+    document.getElementById("button").className = 'show'; 
+    currentPlay = ""
+    return
+  };
+
+
+  if (currentPlay === "X") {
     currentPlay = "O";
-    e.target.textContent = currentPlay;
+
   } else {
     currentPlay = "X";
-    e.target.textContent = currentPlay;
-  } 
+  }
 }
 
 
@@ -31,13 +47,29 @@ const winningCombinations = [
   ["c3", "c5", "c7"]
 ];
 
-winningCombinations.forEach(function(id) 
 
+function isThereWin() {
+  let results = [];
 
+  //Loop function counting winning moves
+  winningCombinations.forEach(function (winningPattern) {
 
+    let numWinningMoves = 0;
 
-//push onto array
-//function for game is over
-//
+    winningPattern.forEach(function (id) {
+      let found = document.querySelector(`#${id}.${currentPlay}`);
 
+      if (found !== null) {
+        numWinningMoves++;
+        console.log(numWinningMoves)
+      }
+    });
 
+      results.push(numWinningMoves);
+  });
+
+  if (results.includes(3)) {
+    return true;
+  }
+  return false
+}

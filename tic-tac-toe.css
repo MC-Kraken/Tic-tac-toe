@@ -4,6 +4,11 @@
 
 h1 {
     text-align: center;
+    background-color: blueviolet;
+    width: 5em;
+    margin: 0 auto;
+    border: teal 3px solid;
+    color: white;
 }
 
 .row {
@@ -16,24 +21,44 @@ h1 {
     float: left;
     width: 100px;
     height: 100px;
+    position: relative;
 }
 
 .top {
-    border-bottom: 1px black solid;
+    border-bottom: 1px blueviolet solid;
 }
 
 .center {
-    border-bottom: 1px black solid;
+    border-bottom: 1px blueviolet solid;
 }
 
 .left {
-    border-right: 1px black solid;
+    border-right: 1px blueviolet solid;
 }
 
 .right {
-    border-left: 1px black solid;
+    border-left: 1px blueviolet solid;
 }
 
 .row, .column:hover {
     cursor: pointer;
 }
+
+.X-or-O {
+    font-size: 3em;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: inline;
+}
+
