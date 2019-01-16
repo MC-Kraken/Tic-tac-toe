@@ -1,5 +1,5 @@
 let squares = document.querySelectorAll(".column");
-
+moves = 0
 squares.forEach(function (square) {
   square.addEventListener("click", squareClicked);
 });
@@ -8,13 +8,17 @@ let currentPlay = "X";
 
 //Click function
 function squareClicked(e) {
-
+ 
   if (e.target.innerHTML !== "") {
     return;
   };
+  //Move Counter
+  moves++;
 
   e.target.classList.add(currentPlay);
-  e.target.innerHTML = `<span class="X-or-O">${currentPlay}</span>`
+  e.target.innerHTML = `<span class="X-or-O">${currentPlay}</span>`;
+
+ 
 
 
   if (isThereWin()) {
@@ -22,20 +26,22 @@ function squareClicked(e) {
     alert(currentPlay + " Won!");
     document.getElementById("button").className = 'show'; 
     currentPlay = ""
-    return
+    return;
+  } else if(moves == 9){
+    document.getElementById("button").className = 'show';
   };
 
-
+  //Alternating turns
   if (currentPlay === "X") {
     currentPlay = "O";
 
   } else {
     currentPlay = "X";
   }
-}
+};
 
 
-
+//Possible winning combos
 const winningCombinations = [
   ["c1", "c2", "c3"],
   ["c1", "c4", "c7"],
@@ -50,6 +56,7 @@ const winningCombinations = [
 
 function isThereWin() {
   let results = [];
+
 
   //Loop function counting winning moves
   winningCombinations.forEach(function (winningPattern) {
@@ -70,6 +77,14 @@ function isThereWin() {
 
   if (results.includes(3)) {
     return true;
+  } else if(moves == 9) {
+    alert("Draw!")
   }
   return false
 }
+
+//New Game Button
+function newGame() {
+  location.reload();
+}
+

@@ -2,6 +2,10 @@
     padding: 3em;
 }
 
+body {
+    height: 750px;
+}
+
 h1 {
     text-align: center;
     background-color: blueviolet;
@@ -9,6 +13,7 @@ h1 {
     margin: 0 auto;
     border: teal 3px solid;
     color: white;
+    padding: 5px;
 }
 
 .row {
@@ -54,11 +59,23 @@ h1 {
     transform: translateY(-50%);
 }
 
+
+
 .hidden {
     display: none;
 }
 
 .show {
-    display: inline;
+    display: block;
+    position: absolute;
+    bottom: 33.33%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10em;
+    height: 5em; 
+    background-color: blueviolet;
+    color: white;
+    border: teal 3px solid;
+    font-size: 1em;
 }
 
