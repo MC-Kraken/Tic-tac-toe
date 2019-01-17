@@ -1,5 +1,7 @@
 let squares = document.querySelectorAll(".column");
+
 moves = 0
+
 squares.forEach(function (square) {
   square.addEventListener("click", squareClicked);
 });
@@ -9,7 +11,7 @@ let currentPlay = "X";
 //Click function
 function squareClicked(e) {
  
-  if (e.target.innerHTML !== "") {
+  if (e.target.textContent !== "") {
     return;
   };
   //Move Counter
@@ -42,7 +44,7 @@ function squareClicked(e) {
 
 
 //Possible winning combos
-const winningCombinations = [
+var winningCombinations = [
   ["c1", "c2", "c3"],
   ["c1", "c4", "c7"],
   ["c1", "c5", "c9"],
@@ -76,6 +78,9 @@ function isThereWin() {
   });
 
   if (results.includes(3)) {
+    results = [0,0,0,0,0,0,0,0];
+    numWinningMoves = 0;
+    found = [];
     return true;
   } else if(moves == 9) {
     alert("Draw!")
@@ -83,8 +88,14 @@ function isThereWin() {
   return false
 }
 
-//New Game Button
-function newGame() {
+
+// New game button (refreshes page)
+
+function refresh() {
   location.reload();
 }
+
+
+
+
 
