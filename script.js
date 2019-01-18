@@ -1,6 +1,7 @@
 let squares = document.querySelectorAll(".column");
-
-moves = 0
+moves = 0;
+availableSpaces = [];
+random = Math.floor(Math.random() * 9);
 
 squares.forEach(function (square) {
   square.addEventListener("click", squareClicked);
@@ -8,42 +9,65 @@ squares.forEach(function (square) {
 
 let currentPlay = "X";
 
-//Click function
+/////////////////////////////////////Click function
 function squareClicked(e) {
- 
+
   if (e.target.textContent !== "") {
     return;
   };
-  //Move Counter
+  //////////////////////////////////////Move Counter
   moves++;
 
   e.target.classList.add(currentPlay);
   e.target.innerHTML = `<span class="X-or-O">${currentPlay}</span>`;
 
- 
-
 
   if (isThereWin()) {
     console.log("You Won!")
     alert(currentPlay + " Won!");
-    document.getElementById("button").className = 'show'; 
+    document.getElementById("button").className = 'show';
     currentPlay = ""
     return;
-  } else if(moves == 9){
+  } else if (moves == 9) {
     document.getElementById("button").className = 'show';
   };
 
-  //Alternating turns
-  if (currentPlay === "X") {
+  ////////////////////////////////////////////Alternating turns
+  if (currentPlay == "X") {
     currentPlay = "O";
 
   } else {
     currentPlay = "X";
+    return;
   }
+
+  /////////////////////////////////////////////Function for computer move, nested in a conditional statement
+  if (currentPlay == "O") {
+    compMove(availableSpaces)
+
+
+    function compMove(availableSpaces) {
+      random = Math.floor(Math.random() * 9);
+      for (var i = 0; i < 9; i++) {
+        if (squares[i].textContent == "") {
+          console.log(i);
+          availableSpaces.push(random);
+          squares[random].textContent = "O";
+
+
+
+
+
+
+        };
+      };
+    };
+  };
 };
 
 
-//Possible winning combos
+
+//////////////////////////////////////////////////Possible winning combos
 var winningCombinations = [
   ["c1", "c2", "c3"],
   ["c1", "c4", "c7"],
@@ -60,7 +84,7 @@ function isThereWin() {
   let results = [];
 
 
-  //Loop function counting winning moves
+  //////////////////////////////////////////////////Loop function counting winning moves
   winningCombinations.forEach(function (winningPattern) {
 
     let numWinningMoves = 0;
@@ -70,26 +94,25 @@ function isThereWin() {
 
       if (found !== null) {
         numWinningMoves++;
-        console.log(numWinningMoves)
       }
     });
 
-      results.push(numWinningMoves);
+    results.push(numWinningMoves);
   });
 
   if (results.includes(3)) {
-    results = [0,0,0,0,0,0,0,0];
+    results = [0, 0, 0, 0, 0, 0, 0, 0];
     numWinningMoves = 0;
     found = [];
     return true;
-  } else if(moves == 9) {
+  } else if (moves == 9) {
     alert("Draw!")
   }
   return false
 }
 
 
-// New game button (refreshes page)
+////////////////////////////////////////////////////// New game button (refreshes page)
 
 function refresh() {
   location.reload();
