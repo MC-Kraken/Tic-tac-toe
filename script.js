@@ -52,15 +52,10 @@ function squareClicked(e) {
         if (squares[i].textContent == "") {
           console.log(i);
           availableSpaces.push(random);
-          squares[random].textContent = "O";
-
-
-
-
-
-
-        };
+          squares[random].innerHTML = `<span class="X-or-O">${currentPlay}</span>`;
+        }; 
       };
+      currentPlay = "X"
     };
   };
 };

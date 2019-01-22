@@ -68,7 +68,7 @@ h1 {
 .show {
     display: block;
     position: absolute;
-    bottom: 33.33%;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     width: 10em;
